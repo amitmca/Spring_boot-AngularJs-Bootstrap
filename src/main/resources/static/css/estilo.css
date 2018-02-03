@@ -1,0 +1,41 @@
+#consulta {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+#cadastro {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+#tabela{
+	margin-top: 20px;
+}
+
+.table-overflow {
+	width: 600px;
+	height: 400px;
+	overflow: auto
+}
+
+.footer {
+	margin-top:30;
+      height: 50px;
+}
+
+.row{
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-top: 5px;
+		
+}
+
+#voltar{
+	margin-top:-70px;
+	margin-left: -250px;
+}
+
+input.ng-valid.ng-toucher{
+	 border-color: #F99;	
+}
+

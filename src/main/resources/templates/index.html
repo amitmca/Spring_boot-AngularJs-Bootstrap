@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="appCliente">
+	<head>
+	<base href="/"/>
+		<meta charset="utf-8" />
+		<title>Vamos estudando</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="./css/estilo.css"/>
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-route.js"></script>
+		
+		<script type="text/javascript" src="./js/app.js"></script>
+		<script  type="text/javascript" src="./js/controller/cliente-detalhe-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/controller/cliente-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/controller/estado-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/controller/cidade-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/controller/main-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/controller/login-controller.js"></script>
+	  	<script  type="text/javascript" src="./js/interceptor/token-interceptor.js"></script>
+	</head>
+	<body ng-controller="mainController">
+	
+	   <nav class="navbar navbar-default">
+	   	<div class="container-fluid">
+	   		 <ul class="nav navbar-nav">
+		    	 <li class="active"><a href="/">Inicio</a></li>
+		    	<li><a href="/clientes">Cliente</a></li>
+		     	 <li><a href="/estados">estados</a></li>
+		    	 <li><a href="/cidades">Cidades</a></li>
+		    	 <li><a href="/login">login</a></li>
+		     </ul>
+	     </div>	 
+	   </nav> 	 
+	   
+	    
+	     
+	     <div ng-view="ng-view">
+	     
+	     
+	     </div> 
+	 
+	 <div ng-if="tela==5">
+	     path:{{$location.path()}} <br/>
+	     tamplente URL: {{$route.current.templateUrl}} <br/>
+	     paramestros: {{$routeParams}}
+	    </div>
+	</body>
+</html>

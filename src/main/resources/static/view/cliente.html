@@ -1,0 +1,132 @@
+
+<meta charset="utf-8">
+
+
+<!-- Mensagem -->
+<div id="mensagens">
+	<div ng-show="mensagem==true" class="alert alert-danger">
+		 <strong >Error</strong> Dados nao foram prechidos corretamente
+	</div>
+</div>
+
+<!-- formulario cadrasto de cliente -->
+<div id="cadastro"  class="row" >	
+	<form id="formulario" name="frmCliente" novalidate ng-submit="cadrastarClientes()"  ng-if="tela == 2 || tela == 3"
+		class="form-group">
+		<div class="row">
+			<h3 ng-if="tela == 2">Alterar Clientes</h3>
+			<h3 ng-if="tela == 3">Cadastrar Clientes</h3>
+		</div>
+		
+		<div  ng-if="tela == 2" class="row">
+			<div class="col-md-1">
+				<label>ID:</label>
+			</div>
+			<div class="col-md-4">
+				<input  type="text" id="campoText"
+					placeholder=""
+					class="form-control"  value=""
+					ng-model="cliente.id" ng-disabled="true" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-1">
+				<label>Nome:</label>
+			</div>
+			<div class="col-md-5">
+
+				<input type="text" name="campoNome" placeholder="" maxlength="50" ng-minlength="2"
+					class="form-control" required
+					ng-model="cliente.nome" />
+					<div>
+						<span ng-show="frmCliente.campoNome.$error.required && frmCliente.campoNome.$dirty">Campo Obrigatorio</span>
+						<span ng-show="frmCliente.campoNome.$error.minlength">Nome Invalido, minimo 2 caracteres</span>
+					</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-1">
+				<label>E-mail:</label>
+			</div>
+			
+			<div class="col-md-4">
+				<input type="email" name="campoEmail" placeholder="exemplo@exemplo.com" required class="form-control" ng-model="cliente.email" />
+				<span ng-show="frmCliente.campoEmail.$error.required && frmCliente.campoEmail.$dirty">Campo Obrigatorio</span>
+				<span ng-show="frmCliente.campoEmail.$error.email">E-mail invalido</span>
+			</div>
+		</div>
+		
+		<div  class="row" data-ng-controller="estadoController">
+			<div class="col-md-1">
+				<label>Estado:</label>
+			</div>
+			<div class="col-md-4">
+				<select ng-model="cliente.estado"  class="selectpicker" >
+					<option ng-repeat="est in estados" value="{{est.id}}">{{est.nome}}-{{est.uf}}</option>
+					<option>{{est.nome}}</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-2">
+					<input type="button"  class="btn btn-default" value="salvar"
+					ng-click="cadrastarClientes(frmCliente)" />
+					 <input type="button"
+					class="btn btn-default" value="cancelar" ng-click="cancelar()" /> 
+			</div>
+		</div>
+	</form>
+</div>	
+
+	<!-- Campo de pesquisa -->
+	<div id="consulta" ng-if="tela == 1" class="row">
+		<h3>Consultar Clientes</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<input type="text" id="campoPesquisar"
+					placeholder="Pesquisar cliente" class="form-control"
+					required="required" value="" ng-model="pesquisar" />
+			</div>
+			<div class="col-md-2">
+				<input type="button" class="btn btn-default" value="Cadastrar Novo"
+					ng-click="cadastrar()" />
+			</div>
+		</div>
+		
+			<!-- tabela -->
+		<div id="tabela"  class="col-md-6 | table-overflow ">
+			<table class="table table-responsive | table table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>opção</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="cli in clientes | filter:pesquisar">
+					<tr>
+						<td>{{cli.id}}</td>
+						<td>{{cli.nome}}</td>
+						<td>
+							<div class="btn-group">
+								<input type="button" class="btn btn-primary" value="excluir"
+									ng-click="deletarClientes(cli.id)" />
+									
+									 <input type="button"
+									class="btn btn-primary" value="Alterar"
+									ng-click="alterarCliente(cli)" />
+									
+									<a class="btn btn-primary" href="/clientes/{{cli.id}}">
+							Detalhe
+							 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
